@@ -1,5 +1,16 @@
 class Encryptor
 
+	 def supported_characters
+	 	(' '..'z').to_a
+	 end
+
+	 def crack(message)
+	 	supported_characters.count.times.collect do |attempt|
+	 		decrypt(message,attempt)
+	 	end
+	 end
+	 
+
 	 def cipher(rotation)
 		characters = (' '..'z').to_a
 		rotated_characters = characters.rotate(rotation)
