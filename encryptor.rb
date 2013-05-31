@@ -31,6 +31,23 @@ class Encryptor
 			decrypted_letters = letters.collect do |letter|
 				decrypt_letter(letter, rotation)
 			end.join 	 
-		end
+	 end
+
+	 def encrypt_file(filename, rotation)
+ 		#1 Create the file handle to the input file
+ 		input = File.open(filename, "r")
+		#2 Read the text of the input file
+		input_text = input.read
+		#3 Encrypt the text
+		secret_text = encrypt(input_text, rotation)
+		#4 Create a name for the output file
+		output_filename = filename + ".encrypted"
+		#5 Create an output file handle
+		output = File.open(output_filename, "w")
+		#6 Write out the text
+		output.write(secret_text)	
+		#7 Close the file
+		output.close
+	 end
 
 end
