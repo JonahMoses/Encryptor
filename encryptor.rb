@@ -50,4 +50,22 @@ class Encryptor
 		output.close
 	 end
 
+	 def decrypt_file(filename, rotation)
+		#1 Create the file handle to the encrypted file
+		input = File.open(filename, "r")
+		#2 Read the encrypted text
+		input_text = input.read
+		#3 Decrypt the text by passing in the text and rotation
+		unsecret_text = decrypt(input_text, rotation)
+		#4 Create a name for the decrypted file
+		output_filename = filename.gsub("encrypted", "decrypted")
+		#5 Create an output file handle
+		output = File.open(output_filename, "w")
+		#6 Write out the text
+		output.write(unsecret_text)
+		#7 Close the file
+		output.close
+
+	 end
+
 end
